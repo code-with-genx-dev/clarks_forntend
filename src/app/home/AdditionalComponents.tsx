@@ -1,3 +1,4 @@
+import { useState } from "react"
 
 function AdditionalComponents() {
     const componentData_1 = [
@@ -23,19 +24,17 @@ function AdditionalComponents() {
         },
 
     ]
+    const [isHover , setIsHover] = useState<any>(null)
     return (
         <div className="grid grid-cols-2 gap-8">
             {componentData_1.map((item: any, index: any) => (
-                <div key={index} className=" flex items-center gap-3 border border-[#999999] shadow-lg  rounded-[20px] p-3 ">
+                <div key={index} className={`flex items-center gap-3 border border-[#999999] shadow-lg  rounded-[20px] p-3 transform transition-transform duration-300 ease-in-out ${isHover === index ? "scale-105" : "scale-100"} `}  onMouseEnter={()=>setIsHover(index)} onMouseLeave={()=>setIsHover(null)}>
                     <img src={`${item?.image}`} alt="" className="w-[290px] h-[170px]" />
                    <div className="flex flex-col gap-2">
                      <p className="font-semibold">{item?.header}</p>
                     <div className="text-[12px]">
                         <p>{item?.description}</p>
                     </div>
-                    <button className="px-3 py-1 rounded-lg border border-[#999999] font-semibold mx-3 cursor-pointer">
-                        Upload File
-                    </button>
                    </div>
                 </div>
             ))}

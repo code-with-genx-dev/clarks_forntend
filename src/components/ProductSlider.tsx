@@ -13,7 +13,7 @@ const product = [
 ];
 
 const ProductSlider = () => {
- const marqueeRef = useRef<HTMLDivElement | null>(null);
+  const marqueeRef = useRef<HTMLDivElement | null>(null);
   const [centeredIndex, setCenteredIndex] = useState<number | null>(null);
 
   useEffect(() => {
@@ -59,9 +59,8 @@ const ProductSlider = () => {
         {extendedList.map((item, index) => (
           <div
             key={index}
-            className={`marquee-item flex-shrink-0 px-6 transition-all duration-300 ${
-              centeredIndex === index ? 'scale-140 opacity-100 z-10' : 'scale-70 '
-            }`}
+            className={`marquee-item flex-shrink-0 px-6 transition-all duration-300 ${centeredIndex === index ? 'scale-140 opacity-100 z-10' : 'scale-70 '
+              }`}
           >
             <img
               src={item.image}
@@ -76,3 +75,4 @@ const ProductSlider = () => {
 };
 
 export default ProductSlider;
+

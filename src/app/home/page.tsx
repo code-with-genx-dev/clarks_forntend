@@ -1,5 +1,4 @@
 "use client"
-
 import ProductSlider from "@/components/ProductSlider";
 import LeatherComponent from "./LeatherComponent"
 import Carousel from "@/components/Carousel";
