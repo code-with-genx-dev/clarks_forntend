@@ -1,62 +1,75 @@
 import React, { useEffect, useState } from 'react';
 
 interface UploadProps {
-    value: File | null;
-    handleChange: (value: File | null) => void;
+  value: File | null;
+  handleChange: (value: File | null, base64?: string) => void; // add base64
 }
 
 const Upload: React.FC<UploadProps> = ({ handleChange, value }) => {
-    const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-    useEffect(() => {
-        if (value && value.type.startsWith('image/')) {
-            const url = URL.createObjectURL(value);
-            setPreviewUrl(url);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
-            return () => URL.revokeObjectURL(url); // cleanup on unmount or value change
-        } else {
-            setPreviewUrl(null);
-        }
-    }, [value]);
+  useEffect(() => {
+    if (value && value.type.startsWith('image/')) {
+      const url = URL.createObjectURL(value);
+      setPreviewUrl(url);
 
-    return (
-        <div className='border border-dashed border-[#BBBBBB] flex flex-col justify-center items-center rounded-[6px] relative pt-[40px] pb-[20px]'>
-            {!value ? (
-                <>
-                    <div className='absolute -top-10 left-1/2 transform -translate-x-1/2'>
-                        <img src="/assets/upload-image.svg" height={80} width={80} alt="upload" />
-                    </div>
-                    <p className='text-[#BBBBBB] text-center text-[14px]'>Supports JPG, PNG, PDF</p>
-                </>
-            ) : (
-                <div className="mt-2 text-sm text-center">
-                    {value.type.startsWith('image/') && previewUrl ? (
-                        <img
-                            src={previewUrl}
-                            alt="preview"
-                            className="mx-auto mt-2 rounded"
-                            height="100px"
-                            width="100px"
-                        />
-                    ) : (
-                        <p>{value.name}</p>
-                    )}
-                </div>
-            )}
-            <label htmlFor="upload-file" className='text-[#0873CD] text-center pt-3 text-[14px] cursor-pointer'>
-                Browse
-            </label>
-            <input
-                id="upload-file"
-                type="file"
-                accept=".jpg,.png,.pdf"
-                onChange={(e) => {
-                    const file = e.target.files?.[0] || null;
-                    handleChange(file);
-                }}
-                className="sr-only"
+      return () => URL.revokeObjectURL(url); // cleanup
+    } else {
+      setPreviewUrl(null);
+    }
+  }, [value]);
+
+  const convertToBase64 = (file: File) => {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const base64String = reader.result?.toString().split(',')[1]; // remove data:image/...;base64,
+      handleChange(file, base64String || '');
+    };
+    reader.readAsDataURL(file);
+  };
+
+  return (
+    <div className="border border-dashed border-[#BBBBBB] flex flex-col justify-center items-center rounded-[6px] relative pt-[40px] pb-[20px]">
+      {!value ? (
+        <>
+          <div className="absolute -top-10 left-1/2 transform -translate-x-1/2">
+            <img src="/assets/upload-image.svg" height={80} width={80} alt="upload" />
+          </div>
+          <p className="text-[#BBBBBB] text-center text-[14px]">Supports JPG, PNG, PDF</p>
+        </>
+      ) : (
+        <div className="mt-2 text-sm text-center">
+          {value.type.startsWith('image/') && previewUrl ? (
+            <img
+              src={previewUrl}
+              alt="preview"
+              className="mx-auto mt-2 rounded"
+              height="100px"
+              width="100px"
             />
+          ) : (
+            <p>{value.name}</p>
+          )}
         </div>
-    );
+      )}
+
+      <label htmlFor="upload-file" className="text-[#0873CD] text-center pt-3 text-[14px] cursor-pointer">
+        Browse
+      </label>
+
+      <input
+        id="upload-file"
+        type="file"
+        accept=".jpg,.png,.pdf"
+        onChange={(e) => {
+          const file = e.target.files?.[0] || null;
+          if (file) convertToBase64(file);
+          else handleChange(null);
+        }}
+        className="sr-only"
+      />
+    </div>
+  );
 };
 
 export default Upload;

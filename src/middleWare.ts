@@ -4,12 +4,12 @@ export function middleware(req: NextRequest) {
 
   const accessToken = req.cookies.get('access_token')?.value;
 
-  const protectedRoutes = [''];
+  const protectedRoutes = ['/product'];
 
   if (protectedRoutes.some((route) => req.nextUrl.pathname.startsWith(route))) {
     if (!accessToken) {
       console.log(' No access token found! Redirecting to main page.');
-      return NextResponse.redirect(new URL('/#', req.url));
+      return NextResponse.redirect(new URL('/login', req.url));
     } else {
       console.log('Access token found! Allowing access.');
     }
@@ -18,5 +18,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: [''],
+  matcher: ['/product','/product/:path*'],
 };

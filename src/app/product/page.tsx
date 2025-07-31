@@ -198,8 +198,8 @@ const page = () => {
                 </div>
             </div>
             <div className='flex justify-center gap-4 mt-10'>
-                <button className='px-3 py-1 rounded-[4px] bg-[#1c1c1d] text-[#fff]' onClick={() => router.push('/home')} >Back</button>
-                <button className='px-3 py-1 rounded-[4px] bg-[#0873CD] text-[#fff]' onClick={handleUpload} >Upload</button>
+                <button className='px-3 py-1 rounded-[4px] bg-[#1c1c1d] text-[#fff] cursor-pointer' onClick={() => router.push('/home')} >Back</button>
+                <button className='px-3 py-1 rounded-[4px] bg-[#0873CD] text-[#fff] cursor-pointer' onClick={handleUpload} >Upload</button>
             </div>
             <div className="flex justify-center">
                 <img src="/assets/clarks-footer-logo.png" alt="" />

@@ -48,3 +48,11 @@ body::-webkit-scrollbar {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+#checkbox {
+  accent-color: #007F00;
+}
+
+input::placeholder {
+  color: #acacac;
+}

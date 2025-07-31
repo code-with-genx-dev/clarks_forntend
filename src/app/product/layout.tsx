@@ -12,9 +12,11 @@ const NavBar = () => {
             <img src="/assets/clarks-logo.svg" alt="Clarks Logo" className="h-[50px]" />
             <div className="flex items-center gap-10 text-[16px] font-bold">
                 <p className="hover:text-[#953F00] cursor-pointer" onClick={() => router.push('/home')}>HOME</p>
-                <p className="hover:text-[#953F00] cursor-pointer">COMPONENTS</p>
+                <p className="hover:text-[#953F00] cursor-pointer" onClick={() => router.push('/component')}>COMPONENTS</p>
                 <p className="hover:text-[#953F00] cursor-pointer">OTHER SEGMENTS</p>
-            </div>
+                <p className="hover:text-[#953F00] cursor-pointer" onClick={() => router.push('/admin/login')}>ADMIN</p>
+
+            </div>  
         </div>
     );
 };

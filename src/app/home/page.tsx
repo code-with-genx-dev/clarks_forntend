@@ -18,9 +18,9 @@ const page = () => {
         {/* objective-section */}
         <div className="flex items-center justify-center py-[70px] px-[350px]">
           <div className="flex flex-col gap-2">
-            <p className="text-[32px] font-semibold">OBJECTIVE.</p>
-            <p className="text-[14px]">To build a strong foundation for a materials base that is fit for purpose and offers a wide range of options. Our aim is to support our designer, developer, and sourcing teams through a platform that provides real-time access to certified materials. </p>
-            <p className="text-[14px]">We strive to connect the materials world through innovation, transparency, and sustainability, while ensuring workflows remain aligned with a future-focused vision.</p>
+            <p className="text-[32px] text-center font-semibold">OBJECTIVE.</p>
+            <p className="text-[14px] text-center">To build a strong foundation for a materials base that is fit for purpose and offers a wide range of options. Our aim is to support our designer, developer, and sourcing teams through a platform that provides real-time access to certified materials. </p>
+            <p className="text-[14px] text-center">We strive to connect the materials world through innovation, transparency, and sustainability, while ensuring workflows remain aligned with a future-focused vision.</p>
           </div>
         </div>
         {/* product-slide-show */}
@@ -30,8 +30,8 @@ const page = () => {
         {/* components-section */}
         <div className="flex items-center justify-center py-[70px] px-[350px]">
           <div className="flex flex-col gap-2">
-            <p className="text-[32px] font-semibold">COMPONENTS.</p>
-            <p className="text-[14px]">Discover the essential building blocks behind every great pair of shoes. Our Shoe Components category offers a comprehensive selection of parts that contribute to comfort, performance, and style. From structural elements to decorative trims, each component plays a vital role in footwear design and functionality.</p>
+            <p className="text-[32px] text-center font-semibold">COMPONENTS.</p>
+            <p className="text-[14px] text-center">Discover the essential building blocks behind every great pair of shoes. Our Shoe Components category offers a comprehensive selection of parts that contribute to comfort, performance, and style. From structural elements to decorative trims, each component plays a vital role in footwear design and functionality.</p>
           </div>
         </div>
         {/* upload-section */}
@@ -45,8 +45,8 @@ const page = () => {
         {/* additional-segment */}
         <div className="flex items-center justify-center py-[70px] px-[350px]">
           <div className="flex flex-col gap-2">
-            <p className="text-[32px] font-semibold">ADDITIONAL SEGMENT.</p>
-            <p className="text-[14px]">Our Additional Segments in the shoe category are designed to meet diverse lifestyle needs, fashion preferences, and functional demands. These curated collections go beyond the standard to bring more variety and innovation to your footwear choices. </p>
+            <p className="text-[32px] text-center font-semibold">ADDITIONAL SEGMENT.</p>
+            <p className="text-[14px] text-center">Our Additional Segments in the shoe category are designed to meet diverse lifestyle needs, fashion preferences, and functional demands. These curated collections go beyond the standard to bring more variety and innovation to your footwear choices. </p>
           </div>
         </div>
         {/* other-components */}
@@ -56,7 +56,7 @@ const page = () => {
         {/* execellence */}
         <div className="flex items-center justify-center py-[70px] px-[350px]">
           <div className="flex flex-col gap-2">
-            <p className="text-[32px] flex justify-center font-semibold">200 Years of Comfort.</p>
+            <p className="text-[32px] text-center font-semibold">200 Years of Comfort.</p>
             <p className="text-[14px] text-center">For 200 years, we’ve set the standard – and we’re just getting started. In 2025, we honour past and present, proudly commemorating this two-century legacy of innovation and impact through an all-new film, book, museum exhibit, and style collaborations.</p>
           </div>
         </div>

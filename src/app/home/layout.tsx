@@ -15,6 +15,7 @@ const NavBar = () => {
         <p className="hover:text-[#953F00] cursor-pointer">HOME</p>
         <p className="hover:text-[#953F00] cursor-pointer" onClick={() => router.push('/component')}>COMPONENTS</p>
         <p className="hover:text-[#953F00] cursor-pointer">OTHER SEGMENTS</p>
+        <p className="hover:text-[#953F00] cursor-pointer" onClick={() => router.push('/admin/login')}>ADMIN</p>
       </div>
     </div>
   );
