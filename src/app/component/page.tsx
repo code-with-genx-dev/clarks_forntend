@@ -199,7 +199,7 @@ const page = () => {
 
     const [isView, setIsView] = useState<any>()
     const searchParams = useSearchParams();
-    const params:any = searchParams.get("type");
+    const params: any = searchParams.get("type");
     const typeMap: Record<string, string> = {
         leather: "LEATHER",
         laces: "LACES TAPES",
@@ -230,7 +230,7 @@ const page = () => {
     }
     return (
         <div>
-            <div className="bg-[url('/assets/slide/slide-5.png')] h-[450px] flex justify-center items-center">
+            <div className="bg-[url('/assets/common/explore-upload.svg')] h-[450px] flex justify-center items-center">
 
             </div>
             <div className="flex items-center justify-center py-[40px] px-[350px]">
@@ -243,7 +243,7 @@ const page = () => {
                 <div className='col-span-4'>
                     <div className='flex justify-between items-center'>
                         <p className='font-bold text-[16px]'>{params && typeMap[params]}</p>
-                        <button className='px-3 py-1 rounded-[4px] bg-[#0873CD] text-[#fff] cursor-pointer' onClick={()=>{router?.push(`/product?type=${params}`);localStorage.setItem("params",params)}} >Upload</button>
+                        <button className='px-3 py-1 rounded-[4px] bg-[#0873CD] text-[#fff] cursor-pointer' onClick={() => { router?.push(`/product?type=${params}`); localStorage.setItem("params", params) }} >Upload</button>
                     </div>
                 </div>
                 {/* <div className='col-span-1'>

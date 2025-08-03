@@ -66,10 +66,18 @@ const page = () => {
             ...prev,
             [fieldName]: value
         }));
+    };
+    const bannerMap: Record<string, string> = {
+        leather: '/assets/common/form1-banner.svg',
+        laces: '/assets/common/form2-banner.svg',
+        reinforcement: '/assets/common/form3-banner.svg',
+        soles: '/assets/common/form4-banner.svg',
+        non_leather: '/assets/common/form5-banner.svg'
     }
+    const backgroundImage = params && bannerMap[params] ? `url(${bannerMap[params]})` : "";
     return (
         <div>
-            <div className="bg-[url('/assets/slide/slide-5.png')] h-[450px] flex justify-center items-center">
+            <div className="h-[450px] flex justify-center items-center  bg-cover bg-center" style={{backgroundImage}}>
                 <p className='text-[40px] font-bold text-[#fff] '>{params && typeMap[params]}</p>
             </div>
             <div className='grid grid-cols-6 gap-5 px-[70px] pt-[60px]'>

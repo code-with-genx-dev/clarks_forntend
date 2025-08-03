@@ -34,7 +34,7 @@ const Table: React.FC<TableProps> = ({
   const isEmpty = !rows || rows.length === 0;
 
   return (
-    <div className="overflow-x-auto w-full !text-[14px] scroll-bar">
+    <div className="overflow-x-auto w-full !text-[14px] scroll-bar rounded">
       <table className="w-full border-collapse table-auto !text-[14px] rounded">
         {/* Table Header */}
         <thead>

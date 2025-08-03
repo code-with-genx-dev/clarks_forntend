@@ -1,5 +1,5 @@
 "use client"
-import SavePopup from '@/components/svaePopup';
+import SavePopup from '@/components/savePopup';
 import { Response } from '@/utils/common-interfaces';
 import { storeUserDataInCookies } from '@/utils/cookies';
 import { postMethod } from '@/utils/rest-apis';
