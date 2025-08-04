@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
   },
   env: {
     devlopementDomain: "http://localhost:5000",
-    productionDomian: "https://dev-api.	clarksonlinematerialgallery.com"
+    productionDomian: "https://dev-api.clarksonlinematerialgallery.com"
   }
 };
 
