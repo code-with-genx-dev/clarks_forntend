@@ -30,7 +30,7 @@ export const postMethod = async (url: string, payload: any): Promise<Response | 
     }
 }
 
-export const getMethod = async (url: string, payload: any): Promise<Response | any> => {
+export const getMethod = async (url: string): Promise<Response | any> => {
     const environment = process.env.NODE_ENV;
     const apiUrl = environment == 'development' ? `${process.env.devlopementDomain}${url}` : `${process.env.productionDomian}${url}`
     const cookies = parseCookies();
