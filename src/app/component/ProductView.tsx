@@ -61,7 +61,7 @@ const ProductView = () => {
     const [products, setProducts] = useState<any>();
     const getProducts = async () => {
         const res: Response = await getMethod("/products/get-product-details")
-        if (res.status === "success") {
+        if (res?.status === "success") {
             setProducts(res?.data)
         }
     }
@@ -199,9 +199,24 @@ const ProductView = () => {
                         })
                     }
                 </div> */}
-                {uploads.map((file, index) => (
-                    <CardCopmponent key={index} file={file} />
-                ))}
+                {products?.length < 0 ?
+                    <>
+                        {products?.map((file:any, index:any) => (
+                            <CardCopmponent key={index} file={file} />
+                        ))}
+                    </>
+                    :
+                    <div className='col-span-4'>
+                       <div className='flex flex-col justify-center items-center'>
+                         <img
+                            src="/assets/common/nodata.jpg"
+                            alt="No Data"
+                            className="mx-auto h-[300px]"
+                        />
+                        <p>No Data Found</p>
+                       </div>
+                    </div>
+                }
 
             </div>
 

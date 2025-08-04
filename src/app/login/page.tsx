@@ -13,6 +13,7 @@ const page = () => {
         password: ""
     })
     const [params, setParams] = useState<any>();
+    const [message, setMessage] = useState<any>();
     const [savePop, setSavePop] = useState<any>();
     const handleChange = (fieldName: any, value: any) => {
         setFormData({ ...formData, [fieldName]: value })
@@ -27,13 +28,19 @@ const page = () => {
             password: formData?.password
         })
         if (res.status === "success") {
-
+            setMessage(res)
             setSavePop(true)
             setTimeout(async () => {
-                // router.push(`/product?type=${params}`)
+                router.push(`/product?type=${params}`)
                 localStorage.removeItem("params")
             }, 2000)
             storeUserDataInCookies(res?.data)
+        } else {
+            setMessage(res)
+            setSavePop(true)
+            setTimeout(async () => {
+                setSavePop(false)
+            }, 2000)
         }
     }
 
@@ -77,7 +84,7 @@ const page = () => {
             </div>
             {
                 savePop &&
-                <SavePopup message={'Successfully Logged.'} status='success' />
+                <SavePopup message={message?.message} status={message.status === "success" ? "success" : 'error'} />
             }
         </div>
     )

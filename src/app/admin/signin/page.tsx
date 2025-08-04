@@ -3,10 +3,12 @@ import SavePopup from '@/components/savePopup';
 import { Response } from '@/utils/common-interfaces';
 import { postMethod } from '@/utils/rest-apis';
 import { useRouter } from 'next/navigation'
+import { parseCookies } from 'nookies';
 import React, { useState } from 'react'
 
 const page = () => {
     const router = useRouter();
+    const cookies = parseCookies()
     const [formData, setFormData] = useState<any>({
         user_name: "",
         user_email: "",
@@ -55,7 +57,7 @@ const page = () => {
     }
     return (
         <>
-            <div className="bg-[url('/assets/common/login.svg')] h-[100vh] bg-no-repeat bg-cover w-screen grid grid-cols-3 overflow-auto">
+           { <div className="bg-[url('/assets/common/login.svg')] h-[100vh] bg-no-repeat bg-cover w-screen grid grid-cols-3 overflow-auto">
                 <div className="text-white col-span-2 flex flex-col justify-center pl-20">
                     <p className="text-[44px] font-bold mb-2">Welcome, Admin!</p>
                     <p className="text-[14px] pr-[200px]">
@@ -142,7 +144,7 @@ const page = () => {
                         </button>
                     </div>
                 </div>
-            </div>
+            </div>}
             {
                 signInSuccess &&
                 <>

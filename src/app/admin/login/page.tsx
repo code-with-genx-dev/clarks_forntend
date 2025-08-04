@@ -3,6 +3,7 @@ import SavePopup from '@/components/savePopup';
 import { Response } from '@/utils/common-interfaces';
 import { storeUserDataInCookies } from '@/utils/cookies';
 import { postMethod } from '@/utils/rest-apis';
+import { tree } from 'next/dist/build/templates/app-page';
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
@@ -13,6 +14,7 @@ const page = () => {
         password: ""
     })
     const [params, setParams] = useState<any>();
+    const [message, setMessage] = useState<any>();
     const [savePop, setSavePop] = useState<any>();
     const handleChange = (fieldName: any, value: any) => {
         setFormData({ ...formData, [fieldName]: value })
@@ -26,14 +28,21 @@ const page = () => {
             email: formData?.user_name,
             password: formData?.password
         })
-        if (res.status === "success") {
 
+        if (res.status === "success") {
+            setMessage(res)
             setSavePop(true)
             setTimeout(async () => {
                 router.push(`/admin/panel`)
                 localStorage.removeItem("params")
             }, 2000)
             storeUserDataInCookies(res?.data)
+        } else {
+            setMessage(res)
+            setSavePop(true)
+            setTimeout(async () => {
+                setSavePop(false)
+            }, 2000)
         }
     }
 
@@ -70,6 +79,9 @@ const page = () => {
                                 onChange={(e) => { handleChange("password", e.target.value) }}
                             />
                         </div>
+                        <div className='flex items-center justify-end'>
+                            <p className='underline text-[13px] text-[#fff] cursor-pointer' onClick={() => router?.push("/admin/signin")}>Sign Up!</p>
+                        </div>
                         <button className="w-full bg-[#DDDDDD] mt-[10px] px-4 py-2 rounded-full text-black font-semibold cursor-pointer" onClick={() => logIn()}>
                             Login
                         </button>
@@ -78,7 +90,7 @@ const page = () => {
             </div>
             {
                 savePop &&
-                <SavePopup message={'Successfully Logged.'} status='success' />
+                <SavePopup message={message?.message} status={message.status === "success" ? "success" : 'error'} />
             }
         </div>
     )

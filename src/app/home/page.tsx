@@ -35,10 +35,10 @@ const page = () => {
           </div>
         </div>
         {/* upload-section */}
-        <div className="px-[150px] pt-[80px] pb-[30px]">
+        <div className="px-[150px] pt-[80px] pb-[30px]" id="component">
           <LeatherComponent />
         </div>
-        {/* autoscroll-secttion */}
+        {/* autoscroll-section */}
         <div className="py-[100px]">
           <Carousel />
         </div>
@@ -50,7 +50,7 @@ const page = () => {
           </div>
         </div>
         {/* other-components */}
-        <div className="px-[150px] pt-[70px] pb-[30px]">
+        <div className="px-[150px] pt-[70px] pb-[30px]" id="others">
           <AdditionalComponents />
         </div>
         {/* execellence */}
