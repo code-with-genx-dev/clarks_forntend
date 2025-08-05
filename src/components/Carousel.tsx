@@ -27,7 +27,7 @@ const Carousel = () => {
   }, [currentIndex])
 
   return (
-    <div className="relative w-full h-[500px] mx-auto overflow-hidden ">
+    <div className="relative w-full h-[500px] mx-auto overflow-hidden bg-white">
       {/* Sliding container */}
       <div
         className="flex transition-transform duration-700 ease-in-out"

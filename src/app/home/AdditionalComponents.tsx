@@ -26,7 +26,7 @@ function AdditionalComponents() {
     ]
     const [isHover , setIsHover] = useState<any>(null)
     return (
-        <div className="grid grid-cols-2 gap-8">
+        <div className="grid grid-cols-2 gap-8 bg-white">
             {componentData_1.map((item: any, index: any) => (
                 <div key={index} className={`flex items-center gap-3 border border-[#999999] shadow-lg  rounded-[20px] p-3 transform transition-transform duration-300 ease-in-out ${isHover === index ? "scale-105" : "scale-100"} `}  onMouseEnter={()=>setIsHover(index)} onMouseLeave={()=>setIsHover(null)}>
                     <img src={`${item?.image}`} alt="" className="w-[290px] h-[170px]" />
