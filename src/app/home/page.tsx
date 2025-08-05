@@ -50,7 +50,7 @@ const page = () => {
           </div>
         </div>
         {/* other-components */}
-        <div className="px-[150px] pt-[70px] pb-[30px]" id="others">
+        <div className="px-[150px] pt-[70px] pb-[30px] bg-white" id="others">
           <AdditionalComponents />
         </div>
         {/* execellence */}
