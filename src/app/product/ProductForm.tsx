@@ -28,11 +28,18 @@ const ProductForm = () => {
         { label: "E catalog", value: "E catalog" }
     ];
 
+    const category_arr = [
+        "non_leather", "soles", "reinforcement", "laces", "leather"
+    ]
+
+
     const searchParams = useSearchParams();
-    const params = searchParams.get("type");
+    const params: any = searchParams.get("type");
+    const category = category_arr.includes(params) ? "components" : "other segments"
     const router = useRouter();
     const [savePop, setSavePop] = useState<any>();
-    const [message,setMessage] = useState<any>();
+    const [fieldName, setFileName] = useState<any>()
+    const [message, setMessage] = useState<any>();
     const handleUpload = async () => {
         const payload = {
             vendor_name: formData?.vendor_name,
@@ -46,10 +53,16 @@ const ProductForm = () => {
             shoe_factories_used: formData?.shoe_factories_used || "",
             style_used: formData?.style_used || "",
             leather_image: formData?.leather_image || null,
-            shoe_image: formData?.shoe_image || null
+            shoe_image: formData?.shoe_image || null,
+            leather_file_name: fieldName || "",
+            sub_category: params ?? "",
+            category: category ?? ""
         }
         const withoutLeatherPayload = {
             leather_image: formData?.leather_image || null,
+            leather_file_name: fieldName || "",
+            sub_category: params ?? "",
+            category: category ?? ""
         }
         console.log(payload)
         const res: Response = await postMethod("/products/save-product", params !== "leather" ? withoutLeatherPayload : payload)
@@ -61,14 +74,14 @@ const ProductForm = () => {
                 router.push(`/home`)
                 localStorage.removeItem("params")
             }, 2000)
-        }else{
+        } else {
             setMessage(res)
             setSavePop(true)
             setTimeout(async () => {
-                 setSavePop(false)
+                setSavePop(false)
             }, 3000)
         }
-        
+
     }
     const [formData, setFormData] = useState<any>(
         {
@@ -82,7 +95,7 @@ const ProductForm = () => {
             shoe_factories_used: "",
             style_used: "",
             leather_image: null,
-            shoe_image: null
+            shoe_image: null,
         }
     )
     const handleChange = (fieldName: string, value: any) => {
@@ -116,7 +129,7 @@ const ProductForm = () => {
                             <div className='grid grid-cols-3 gap-6'>
                                 <div className='flex flex-col gap-1 col-span-1  '>
                                     <label htmlFor="" className='text-[#222222] text-[14px] font-semibold'>Leather category</label>
-                                    <Dropdown className='border h-9 rounded-[6px] -pt-2 focus:outline px-2'
+                                    <Dropdown className='border h-9 rounded-[6px] -pt-6 focus:outline px-2'
                                         options={leatherOptions || []}
                                         onChange={(e) => { handleChange("leather_category", e.target.value) }}
                                         value={formData?.leather_category ?? ""}
@@ -144,10 +157,16 @@ const ProductForm = () => {
                                 </div>
                                 <div className='flex flex-col gap-1 col-span-1 '>
                                     <label htmlFor="" className='text-[#222222] text-[14px] font-semibold'>Tannery Location</label>
-                                    <Dropdown className='border h-9 rounded-[6px]   focus:outline px-2'
+                                    {/* <Dropdown className='border h-9 rounded-[6px]   focus:outline px-2'
                                         options={[]}
                                         onChange={(e) => { handleChange("tannery_location", e.target.value) }}
                                         value={formData?.tannery_location ?? ""}
+                                    /> */}
+                                    <input
+                                        className='border h-9 rounded-[6px] border-[#DDDDDD] focus:border-[#DDDDDD] focus:outline focus:outline-[#DDDDDD] px-2'
+                                        type='text'
+                                        onChange={(e) => { handleChange("tannery_location", e.target.value) }}
+                                        value={formData?.tannery_location}
                                     />
                                 </div>
                                 <div className='flex flex-col gap-1 col-span-1'>
@@ -163,9 +182,15 @@ const ProductForm = () => {
                                     <label htmlFor="" className='text-[#222222] text-[14px] font-semibold'>Season Price</label>
                                     <input
                                         className='border h-9 rounded-[6px] border-[#DDDDDD] focus:border-[#DDDDDD] focus:outline focus:outline-[#DDDDDD] px-2'
-                                        type='text'
+                                        type='number'
                                         onChange={(e) => { handleChange("season_price", e.target.value) }}
                                         value={formData?.season_price ?? ""}
+                                        onWheel={(e) => e.currentTarget.blur()} // Prevent scrolling to change value
+                                        onKeyDown={(e) => {
+                                            if (["e", "E", "+", "-"].includes(e.key)) {
+                                                e.preventDefault(); // Prevent unwanted characters
+                                            }
+                                        }}
                                     />
                                 </div>
                                 <div className='flex flex-col gap-1 col-span-1'>
@@ -213,6 +238,7 @@ const ProductForm = () => {
                         <div className='flex flex-col gap-1 col-span-1  '>
                             <label htmlFor="" className='text-[#222222] text-[14px] font-semibold capitalize mb-2'>Uplaod</label>
                             <Upload value={formData?.leather_image} handleChange={(file, base64) => {
+                                setFileName(file?.name || "uploaded doc")
                                 handleChange("leather_image", base64)
                             }} />
                         </div>
@@ -228,7 +254,7 @@ const ProductForm = () => {
             </div>
             {
                 savePop &&
-               <SavePopup message={message?.message} status={message.status === "success" ? "success" : 'error'} />
+                <SavePopup message={message?.message} status={message.status === "success" ? "success" : 'error'} />
             }
         </div>
     )

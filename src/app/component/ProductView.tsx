@@ -60,7 +60,7 @@ const ProductView = () => {
     const [checkedFields, setCheckedFields] = useState<{ [key: string]: boolean }>({});
     const [products, setProducts] = useState<any>();
     const getProducts = async () => {
-        const res: Response = await getMethod("/products/get-product-details")
+        const res: Response = await getMethod(`/products/get-product-details?sub_category=${params}`)
         if (res?.status === "success") {
             setProducts(res?.data)
         }
@@ -106,11 +106,11 @@ const ProductView = () => {
                 <div className='flex flex-col gap-y-3 bg-[#F2F2F2] p-3 rounded-md'>
                     <div className='flex items-center gap-2'>
                         <i className='pi pi-file-pdf text-[#EF5350]'></i>
-                        <p className='!text-[#222]'>{file.filename}</p>
+                        <p className='!text-[#222]'>{file.upload_file_name || "Uploaded docs"}</p>
                     </div>
                     <div>
-                        <p className='text-[#999999]'>Uploaded by : {file.uploadedBy}</p>
-                        <p className='text-[#999999]'>Uploaded Date : {file.date}</p>
+                        <p className='text-[#999999]'>Uploaded by : {file.uploaded_by}</p>
+                        <p className='text-[#999999]'>Uploaded Date : {file.uploaded_date}</p>
                     </div>
                     <div className='flex items-center justify-center gap-4'>
                         <button className='flex items-center gap-1 cursor-pointer px-3 py-[2px] rounded-[4px] border border-[#B6B6B6] text-[#B6B6B6]' onClick={() => setIsView(true)}><i className='pi pi-eye text-[#B6B6B6]'></i>View</button>
@@ -199,7 +199,7 @@ const ProductView = () => {
                         })
                     }
                 </div> */}
-                {products?.length < 0 ?
+                {products?.length > 0 ?
                     <>
                         {products?.map((file:any, index:any) => (
                             <CardCopmponent key={index} file={file} />

@@ -18,6 +18,7 @@ const page = () => {
         isAdmin: "",
     });
     const [isShowPass, setIsShowPass] = useState<any>();
+    const [message, setMessage] = useState<any>();
     const [isShowRePass, setIsShowRePass] = useState<any>();
     const [signInSuccess,setSignInSuccess] = useState<any>()
     function reset() {
@@ -42,7 +43,7 @@ const page = () => {
             mobile_number: formData?.number,
             password: formData?.password,
             confrim_pass: formData?.confrim_pass,
-            isAdmin: formData?.isAdmin
+            is_admin: formData?.isAdmin
         }
         const res: Response = await postMethod("/users/sign_up", payload)
         if (res.status == "success") {
@@ -52,7 +53,12 @@ const page = () => {
                 router.push("/admin/login")
                 setSignInSuccess(false)
             },2000)
-
+        }else {
+            setMessage(res)
+            setSignInSuccess(true)
+            setTimeout(async () => {
+                setSignInSuccess(false)
+            }, 2000)
         }
     }
     return (
@@ -140,7 +146,7 @@ const page = () => {
                         </div>
 
                         <button className="w-full bg-[#DDDDDD] mt-[10px] px-4 py-2 rounded-full text-black font-semibold cursor-pointer" onClick={() => signIn()}>
-                            Login
+                            Sign Up
                         </button>
                     </div>
                 </div>
@@ -148,7 +154,7 @@ const page = () => {
             {
                 signInSuccess &&
                 <>
-                <SavePopup message={'Succes'} status={'success'}/>
+                <SavePopup message={message?.message} status={message.status === "success" ? "success" : 'error'} />
                 </>
             }
         </>

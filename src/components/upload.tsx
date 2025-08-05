@@ -16,7 +16,8 @@ const Upload: React.FC<UploadProps> = ({ handleChange, value }) => {
     setFileName(file.name)
     const reader = new FileReader();
     reader.onloadend = () => {
-      const base64String = reader.result?.toString().split(',')[1] || '';
+      const base64String = reader.result?.toString() || '';
+      // const base64String = reader.result?.toString().split(',')[1] || '';
       const url = URL.createObjectURL(file);
       setPreviewUrl(url);
       setFileType(file.type);

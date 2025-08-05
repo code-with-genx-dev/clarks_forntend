@@ -2,7 +2,7 @@
 import Table from '@/components/Table'
 import { Response } from '@/utils/common-interfaces';
 import { getMethod } from '@/utils/rest-apis';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 const AdminPanel = () => {
        const card_data = [
         {
@@ -45,13 +45,16 @@ const AdminPanel = () => {
         )
     }
     const [message, setMessage] = useState<any>()
-    const [tableData, setTableData] = useState<any>()
+    const [tableData, setTableData] = useState<any>([])
     const getProductData = async () => {
         const res: Response = await getMethod("/products/get-product-approval-data")
         if (res?.status == "success") {
             setTableData(res?.data)
         }
     }
+    useEffect(()=>{
+        getProductData()
+    },[])
 
   return (
       <div>
@@ -69,7 +72,7 @@ const AdminPanel = () => {
                     <Card key={index} index={index} data={data} />
                 ))}
             </div>
-            <div className='mx-5 my-2 bg-[#F6F6F6] p-4 rounded'>
+            <div className='mx-5 my-4 bg-[#F6F6F6] p-4 rounded'>
                 <div className='flex items-center gap-2 justify-end'>
                     <button className='px-3 py-1 rounded-[4px] bg-[#F3D6D6] text-[#833F3F]   cursor-pointer'> <i className='pi pi-times'></i> Reject</button>
                     <button className='px-3 py-1 rounded-[4px] bg-[#E4F3D6] text-[#60833F] cursor-pointer'> <i className='pi pi-check'></i> Accept</button>

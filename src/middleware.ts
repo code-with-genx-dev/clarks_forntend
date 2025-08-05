@@ -2,21 +2,30 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export function middleware(req: NextRequest) {
   const accessToken = req.cookies.get('access_token')?.value;
-  const isAdmin = req.cookies.get('isadmin')?.value === 'true';
+  const isAdmin = req.cookies.get('is_admin')?.value;
   const { pathname } = req.nextUrl;
 
-  // 🔐 Handle /admin routes except /admin/login
-  if (pathname.startsWith('/admin') && pathname !== '/admin/login') {
+  // ✅ Allow access to /admin/login always
+  if (pathname === '/admin/login') {
+    return NextResponse.next();
+  }
+
+  // 🔐 Admin Routes (other than login)
+  if (pathname.startsWith('/admin')) {
+    // ⚠️ First time: if no access token but isAdmin cookie is there → redirect to signin
+    if (isAdmin && !accessToken) {
+      return NextResponse.redirect(new URL('/admin/signin', req.url));
+    }
+
+    // ❌ Not allowed: if neither cookie is present
     if (!accessToken || !isAdmin) {
-      console.log('Blocked admin route: No access token or not an admin');
       return NextResponse.redirect(new URL('/admin/login', req.url));
     }
   }
 
-  // 🔒 Handle /product routes except /login
+  // 🔐 Product Routes
   if (pathname.startsWith('/product') && pathname !== '/login') {
     if (!accessToken) {
-      console.log('Blocked product route: No access token');
       return NextResponse.redirect(new URL('/login', req.url));
     }
   }

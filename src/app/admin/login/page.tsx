@@ -3,7 +3,6 @@ import SavePopup from '@/components/savePopup';
 import { Response } from '@/utils/common-interfaces';
 import { storeUserDataInCookies } from '@/utils/cookies';
 import { postMethod } from '@/utils/rest-apis';
-import { tree } from 'next/dist/build/templates/app-page';
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
@@ -33,8 +32,8 @@ const page = () => {
             setMessage(res)
             setSavePop(true)
             setTimeout(async () => {
+                setSavePop(false)
                 router.push(`/admin/panel`)
-                localStorage.removeItem("params")
             }, 2000)
             storeUserDataInCookies(res?.data)
         } else {
@@ -90,7 +89,7 @@ const page = () => {
             </div>
             {
                 savePop &&
-                <SavePopup message={message?.message} status={message.status === "success" ? "success" : 'error'} />
+                <SavePopup message={message?.message} status={message?.status === "success" ? "success" : 'error'} />
             }
         </div>
     )

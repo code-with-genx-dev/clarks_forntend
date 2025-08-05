@@ -26,6 +26,7 @@ export const storeUserDataInCookies = (data: any) => {
     maxAge: 1 * 24 * 60 * 60,
     path: '/',
   });
+
   setCookie(null, 'is_admin', data.user.is_admin, {
     maxAge: 1 * 24 * 60 * 60,
     path: '/',

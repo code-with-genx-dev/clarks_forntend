@@ -30,33 +30,87 @@ export const postMethod = async (url: string, payload: any): Promise<Response | 
     }
 }
 
+// export const getMethod = async (url: string): Promise<Response | any> => {
+//     const environment = process.env.NODE_ENV;
+//     const apiUrl = environment == 'development' ? `${process.env.devlopementDomain}${url}` : `${process.env.productionDomian}${url}`
+//     const cookies = parseCookies();
+//     const token = cookies?.access_token;
+//     try {
+//         const response = await fetch(apiUrl, {
+//             method: 'GET',
+//             headers: {
+//                 "Content-Type": "application/json",
+//                 "Authorization": token ? `Bearer ${token}` : '',
+//             },
+//         })
+//         if (!response.ok) {
+//             throw new Error(`HTTP error! Status: ${response.status}`);
+//         }
+//         const json: any = await response?.json();
+//         return json;
+//     } catch (error) {
+//         console.error('Error in getMethod:', error);
+//         return {
+//             data: '',
+//             status: 'failure',
+//             message: 'An unexpected error occurred.',
+//         };
+//     }
+// }
 export const getMethod = async (url: string): Promise<Response | any> => {
     const environment = process.env.NODE_ENV;
-    const apiUrl = environment == 'development' ? `${process.env.devlopementDomain}${url}` : `${process.env.productionDomian}${url}`
+    const apiUrl = environment === 'development'
+        ? `${process.env.devlopementDomain}${url}`
+        : `${process.env.productionDomian}${url}`;
+
     const cookies = parseCookies();
     const token = cookies?.access_token;
+
     try {
         const response = await fetch(apiUrl, {
             method: 'GET',
             headers: {
-                "Content-Type": "application/json",
-                "Authorization": token ? `Bearer ${token}` : '',
+                'Content-Type': 'application/json',
+                'Authorization': token ? `Bearer ${token}` : '',
             },
-        })
+        });
+
         if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+            // Try to extract text or JSON for error insight
+            const contentType = response.headers.get('content-type');
+            const errorMessage = contentType?.includes('application/json')
+                ? await response.json()
+                : await response.text();
+
+            throw new Error(
+                `HTTP error! Status: ${response.status}, Message: ${errorMessage}`
+            );
         }
-        const json: any = await response?.json();
-        return json;
-    } catch (error) {
-        console.error('Error in postMethod:', error);
+
+        const contentType = response.headers.get('content-type');
+
+        if (contentType && contentType.includes('application/json')) {
+            const json = await response.json();
+            return json;
+        } else {
+            const text = await response.text();
+            return {
+                data: text,
+                status: 'non-json-response',
+                message: 'Received non-JSON response from server.',
+            };
+        }
+
+    } catch (error: any) {
+        console.error('Error in getMethod:', error.message || error);
         return {
             data: '',
             status: 'failure',
-            message: 'An unexpected error occurred.',
+            message: error.message || 'An unexpected error occurred.',
         };
     }
-}
+};
+
 
 export const patchMethod = async (url: string, payload: any): Promise<Response | any> => {
     const environment = process.env.NODE_ENV;
