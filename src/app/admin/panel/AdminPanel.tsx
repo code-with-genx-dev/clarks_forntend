@@ -1,7 +1,7 @@
 "use client"
 import Table from '@/components/Table'
 import { Response } from '@/utils/common-interfaces';
-import { getMethod } from '@/utils/rest-apis';
+import { getMethod, postMethod } from '@/utils/rest-apis';
 import React, { useEffect, useState } from 'react'
 const AdminPanel = () => {
        const card_data = [
@@ -45,9 +45,13 @@ const AdminPanel = () => {
         )
     }
     const [message, setMessage] = useState<any>()
-    const [tableData, setTableData] = useState<any>([])
+    const [tableData, setTableData] = useState<any>([]);
     const getProductData = async () => {
-        const res: Response = await getMethod("/products/get-product-approval-data")
+        const res: Response = await postMethod("/products/get-product-approval-data",{
+            selected_date:"2025-08-01",
+            status:["Pending","Approved"],
+            filter:{}
+        })
         if (res?.status == "success") {
             setTableData(res?.data)
         }

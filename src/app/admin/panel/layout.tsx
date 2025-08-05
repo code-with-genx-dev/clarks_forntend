@@ -32,7 +32,7 @@ const NavBar = () => {
   return (
     <div className="flex w-full items-center justify-between fixed top-0 left-0 right-0 h-[60px] px-2 pr-4 bg-white/50 backdrop-blur-sm z-50 shadow-lg">
       <img src="/assets/clarks-logo.svg" alt="Clarks Logo" className="h-[50px]" />
-      <div className="flex items-center gap-10 text-[16px] font-bold">
+      <div className="flex items-center gap-10 text-[16px] font-bold text-[#222]">
         <p className="hover:text-[#953F00] cursor-pointer" onClick={() => router.push('/home')}>HOME</p>
         <a href="/home#component" className="hover:text-[#953F00] cursor-pointer" >COMPONENTS</a>
         <a href="/home#others" className="hover:text-[#953F00] cursor-pointer">OTHER SEGMENTS</a>
