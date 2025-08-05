@@ -35,7 +35,7 @@ const page = () => {
           </div>
         </div>
         {/* upload-section */}
-        <div className="px-[150px] pt-[80px] pb-[30px]" id="component">
+        <div className="px-[150px] pt-[80px] pb-[30px] bg-white" id="component">
           <LeatherComponent />
         </div>
         {/* autoscroll-section */}
