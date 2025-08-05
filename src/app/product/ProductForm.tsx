@@ -121,13 +121,13 @@ const ProductForm = () => {
             {params && typeMap[params] == "LEATHER" &&
                 <>
                     <div className='grid grid-cols-6 gap-5 px-[70px] pt-[60px]'>
-                        <div className='col-span-2'>
+                        <div className='col-span-2 text-[#222]'>
                             <p className='text-[#222222] text-[16px] font-bold capitalize'>{params && typeMap[params]} Details</p>
                             <p className='text-[#999999] text-[12px]'>Please fill in the details below to provide accurate information about the leather material</p>
                         </div>
                         <div className='col-span-4'>
                             <div className='grid grid-cols-3 gap-6'>
-                                <div className='flex flex-col gap-1 col-span-1  '>
+                                <div className='flex flex-col gap-1 col-span-1 '>
                                     <label htmlFor="" className='text-[#222222] text-[14px] font-semibold'>Leather category</label>
                                     <Dropdown className='border h-9 rounded-[6px] -pt-6 focus:outline px-2'
                                         options={leatherOptions || []}
@@ -229,7 +229,7 @@ const ProductForm = () => {
             }
 
             <div className={`grid grid-cols-6 gap-5 px-[70px] ${params && typeMap[params] !== "LEATHER" ? "mt-10" : ""}`}>
-                <div className='col-span-2'>
+                <div className='col-span-2 text-[#222]'>
                     <p className='text-[#222222] text-[16px] font-bold'>Uploads</p>
                     <p className='text-[#999999] text-[12px]'>Upload clear images of the leather material to help us verify its texture, color, and finish.</p>
                 </div>

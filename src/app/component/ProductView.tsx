@@ -126,7 +126,7 @@ const ProductView = () => {
 
             </div>
             <div className="flex items-center justify-center py-[40px] px-[350px]">
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 text-[#222]">
                     <p className="text-[32px] flex justify-center font-semibold">Explore Uploads.</p>
                     <p className="text-[14px] text-center">This section allows you to view and manage all the files and documents you have uploaded. You can easily search, filter, and download your previous uploads, ensuring quick access to your data whenever needed.</p>
                 </div>
@@ -134,7 +134,7 @@ const ProductView = () => {
             <div className='grid grid-cols-4 px-[40px] gap-8'>
                 <div className='col-span-4'>
                     <div className='flex justify-between items-center'>
-                        <p className='font-bold text-[16px]'>{params && typeMap[params]}</p>
+                        <p className='font-bold text-[16px] text-[#222]' >{params && typeMap[params]}</p>
                         <button className='px-3 py-1 rounded-[4px] bg-[#0873CD] text-[#fff] cursor-pointer' onClick={() => { router?.push(`/product?type=${params}`); localStorage.setItem("params", params) }} >Upload</button>
                     </div>
                 </div>

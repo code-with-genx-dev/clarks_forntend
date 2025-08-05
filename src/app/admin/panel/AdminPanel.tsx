@@ -66,7 +66,7 @@ const AdminPanel = () => {
 
             </div>
             <div className="flex items-center justify-center py-[40px] px-[350px]">
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 text-[#222]">
                     <p className="text-[32px] flex justify-center font-semibold">Manage Uploads.</p>
                     <p className="text-[14px] text-center">This section provides a centralized view to manage all your uploaded files. You can review, organize, rename, delete, or update your uploads to ensure your data stays clean, relevant, and up to date.</p>
                 </div>
