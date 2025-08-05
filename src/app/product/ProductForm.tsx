@@ -140,7 +140,7 @@ const ProductForm = () => {
                                 <div className='flex flex-col gap-1 col-span-1'>
                                     <label htmlFor="" className='text-[#222222] text-[14px] font-semibold'>Leather Name</label>
                                     <input
-                                        className='border h-9 rounded-[6px] border-[#DDDDDD] focus:border-[#DDDDDD] focus:outline focus:outline-[#DDDDDD] px-2'
+                                        className='border h-9 rounded-[6px] border-[#DDDDDD] text-[#222] focus:border-[#DDDDDD] focus:outline focus:outline-[#DDDDDD] px-2'
                                         type='text'
                                         onChange={(e) => { handleChange("leather_name", e.target.value) }}
                                         value={formData?.leather_name ?? ""}
@@ -149,7 +149,7 @@ const ProductForm = () => {
                                 <div className='flex flex-col gap-1 col-span-1'>
                                     <label htmlFor="" className='text-[#222222] text-[14px] font-semibold'>Tannery</label>
                                     <input
-                                        className='border h-9 rounded-[6px] border-[#DDDDDD] focus:border-[#DDDDDD] focus:outline focus:outline-[#DDDDDD] px-2'
+                                        className='border h-9 rounded-[6px] border-[#DDDDDD] text-[#222] focus:border-[#DDDDDD] focus:outline focus:outline-[#DDDDDD] px-2'
                                         type='text'
                                         onChange={(e) => { handleChange("tannery", e.target.value) }}
                                         value={formData?.tannery}
@@ -163,7 +163,7 @@ const ProductForm = () => {
                                         value={formData?.tannery_location ?? ""}
                                     /> */}
                                     <input
-                                        className='border h-9 rounded-[6px] border-[#DDDDDD] focus:border-[#DDDDDD] focus:outline focus:outline-[#DDDDDD] px-2'
+                                        className='border h-9 rounded-[6px] border-[#DDDDDD] text-[#222] focus:border-[#DDDDDD] focus:outline focus:outline-[#DDDDDD] px-2'
                                         type='text'
                                         onChange={(e) => { handleChange("tannery_location", e.target.value) }}
                                         value={formData?.tannery_location}
@@ -172,7 +172,7 @@ const ProductForm = () => {
                                 <div className='flex flex-col gap-1 col-span-1'>
                                     <label htmlFor="" className='text-[#222222] text-[14px] font-semibold'>Season Introduced</label>
                                     <input
-                                        className='border h-9 rounded-[6px] border-[#DDDDDD] focus:border-[#DDDDDD] focus:outline focus:outline-[#DDDDDD] px-2'
+                                        className='border h-9 rounded-[6px] border-[#DDDDDD] text-[#222] focus:border-[#DDDDDD] focus:outline focus:outline-[#DDDDDD] px-2'
                                         type='text'
                                         onChange={(e) => { handleChange("season_introduced", e.target.value) }}
                                         value={formData?.season_introduced ?? ""}
@@ -181,7 +181,7 @@ const ProductForm = () => {
                                 <div className='flex flex-col gap-1 col-span-1'>
                                     <label htmlFor="" className='text-[#222222] text-[14px] font-semibold'>Season Price</label>
                                     <input
-                                        className='border h-9 rounded-[6px] border-[#DDDDDD] focus:border-[#DDDDDD] focus:outline focus:outline-[#DDDDDD] px-2'
+                                        className='border h-9 rounded-[6px] border-[#DDDDDD] text-[#222] focus:border-[#DDDDDD] focus:outline focus:outline-[#DDDDDD] px-2'
                                         type='number'
                                         onChange={(e) => { handleChange("season_price", e.target.value) }}
                                         value={formData?.season_price ?? ""}
@@ -196,7 +196,7 @@ const ProductForm = () => {
                                 <div className='flex flex-col gap-1 col-span-1'>
                                     <label htmlFor="" className='text-[#222222] text-[14px] font-semibold'>MOQ if any</label>
                                     <input
-                                        className='border h-9 rounded-[6px] border-[#DDDDDD] focus:border-[#DDDDDD] focus:outline focus:outline-[#DDDDDD] px-2'
+                                        className='border h-9 rounded-[6px] border-[#DDDDDD] text-[#222] focus:border-[#DDDDDD] focus:outline focus:outline-[#DDDDDD] px-2'
                                         type='text'
                                         onChange={(e) => { handleChange("moq", e.target.value) }}
                                         value={formData?.moq ?? ""}
@@ -205,7 +205,7 @@ const ProductForm = () => {
                                 <div className='flex flex-col gap-1 col-span-1'>
                                     <label htmlFor="" className='text-[#222222] text-[14px] font-semibold'>Shoe factories used</label>
                                     <input
-                                        className='border h-9 rounded-[6px] border-[#DDDDDD] focus:border-[#DDDDDD] focus:outline focus:outline-[#DDDDDD] px-2'
+                                        className='border h-9 rounded-[6px] border-[#DDDDDD] text-[#222] focus:border-[#DDDDDD] focus:outline focus:outline-[#DDDDDD] px-2'
                                         type='text'
                                         onChange={(e) => { handleChange("shoe_factories_used", e.target.value) }}
                                         value={formData?.shoe_factories_used ?? ""}
@@ -214,7 +214,7 @@ const ProductForm = () => {
                                 <div className='flex flex-col gap-1 col-span-1'>
                                     <label htmlFor="" className='text-[#222222] text-[14px] font-semibold'>Styles used</label>
                                     <input
-                                        className='border h-9 rounded-[6px] border-[#DDDDDD] focus:border-[#DDDDDD] focus:outline focus:outline-[#DDDDDD] px-2'
+                                        className='border h-9 rounded-[6px] border-[#DDDDDD] text-[#222] focus:border-[#DDDDDD] focus:outline focus:outline-[#DDDDDD] px-2'
                                         type='text'
                                         onChange={(e) => { handleChange("style_used", e.target.value) }}
                                         value={formData?.style_used ?? ""}
