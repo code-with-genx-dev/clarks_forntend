@@ -43,7 +43,7 @@ const page = () => {
           <Carousel />
         </div>
         {/* additional-segment */}
-        <div className="flex items-center justify-center py-[70px] px-[350px]">
+        <div className="flex items-center justify-center py-[70px] px-[350px] bg-white">
           <div className="flex flex-col gap-2 text-[#222]">
             <p className="text-[32px] text-center font-semibold">ADDITIONAL SEGMENT.</p>
             <p className="text-[14px] text-center">Our Additional Segments in the shoe category are designed to meet diverse lifestyle needs, fashion preferences, and functional demands. These curated collections go beyond the standard to bring more variety and innovation to your footwear choices. </p>
