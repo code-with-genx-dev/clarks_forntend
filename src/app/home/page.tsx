@@ -6,7 +6,7 @@ import AdditionalComponents from "./AdditionalComponents";
 const page = () => {
   return (
     <>
-      <div className="h-screen">
+      <div className="h-screen bg-white">
         {/* header-section */}
         <div className="bg-[url('/assets/slide/slide-5.png')] text-white bg-cover bg-center bg-no-repeat h-[500px] w-full flex items-center pl-24">
           <div>
@@ -16,7 +16,7 @@ const page = () => {
           </div>
         </div>
         {/* objective-section */}
-        <div className="flex items-center justify-center py-[70px] px-[350px]">
+        <div className="flex items-center justify-center py-[70px] px-[350px] bg-white">
           <div className="flex flex-col gap-2 text-[#222]">
             <p className="text-[32px] text-center font-semibold">OBJECTIVE.</p>
             <p className="text-[14px] text-center">To build a strong foundation for a materials base that is fit for purpose and offers a wide range of options. Our aim is to support our designer, developer, and sourcing teams through a platform that provides real-time access to certified materials. </p>
@@ -24,11 +24,11 @@ const page = () => {
           </div>
         </div>
         {/* product-slide-show */}
-        <div className="py-[50px]">
+        <div className="py-[50px] bg-white">
           <ProductSlider />
         </div>
         {/* components-section */}
-        <div className="flex items-center justify-center py-[70px] px-[350px]">
+        <div className="flex items-center justify-center py-[70px] px-[350px] bg-white">
           <div className="flex flex-col gap-2 text-[#222]">
             <p className="text-[32px] text-center font-semibold">COMPONENTS.</p>
             <p className="text-[14px] text-center">Discover the essential building blocks behind every great pair of shoes. Our Shoe Components category offers a comprehensive selection of parts that contribute to comfort, performance, and style. From structural elements to decorative trims, each component plays a vital role in footwear design and functionality.</p>
@@ -39,7 +39,7 @@ const page = () => {
           <LeatherComponent />
         </div>
         {/* autoscroll-section */}
-        <div className="py-[100px]">
+        <div className="py-[100px] bg-white">
           <Carousel />
         </div>
         {/* additional-segment */}
@@ -54,14 +54,14 @@ const page = () => {
           <AdditionalComponents />
         </div>
         {/* execellence */}
-        <div className="flex items-center justify-center py-[70px] px-[350px]">
+        <div className="flex items-center justify-center py-[70px] px-[350px] bg-white">
           <div className="flex flex-col gap-2 text-[#222]">
             <p className="text-[32px] text-center font-semibold">200 Years of Comfort.</p>
             <p className="text-[14px] text-center">For 200 years, we’ve set the standard – and we’re just getting started. In 2025, we honour past and present, proudly commemorating this two-century legacy of innovation and impact through an all-new film, book, museum exhibit, and style collaborations.</p>
           </div>
         </div>
         {/* footer */}
-        <div className="flex justify-center">
+        <div className="flex justify-center bg-white">
           <img src="/assets/clarks-footer-logo.png" alt="" />
         </div>
       </div>

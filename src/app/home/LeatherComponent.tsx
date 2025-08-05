@@ -47,7 +47,7 @@ function LeatherComponent() {
                 {componentData_1.map((item: any, index: any) => (
                     <div key={index} className={`w-[300px] flex flex-col justify-center gap-3 border border-[#999999] shadow-lg  rounded-[20px] p-2 cursor-pointer transform transition-transform duration-300 ease-in-out ${isHover_1 === index ? "scale-105" : "scale-100"} `} onMouseEnter={()=>setIshovered_1(index)} onMouseLeave={()=>setIshovered_1(null)} onClick={()=> router.push(`component?type=${item?.type}`)}>
                         <img src={`${item?.image}`} alt="" className="w-[290px] h-[180px]" />
-                        <div className="flex flex-col">
+                        <div className="flex flex-col text-[#222]">
                             <p className="font-semibold text-center">{item?.header}</p>
                             <p className="text-[12px] text-center">{item?.description}</p>
                         </div>
@@ -58,7 +58,7 @@ function LeatherComponent() {
                 {componentData_2.map((item: any, index: any) => (
                     <div key={index} className={`w-[300px] flex flex-col justify-center gap-3 border border-[#999999] shadow-lg  rounded-[20px] p-2 cursor-pointer transform transition-transform duration-300 ease-in-out ${isHover_2 === index ? "scale-105" : "scale-100"} `} onMouseEnter={()=>setIshovered_2(index)} onMouseLeave={()=>setIshovered_2(null)} onClick={()=> router.push(`component?type=${item?.type}`)}>
                         <img src={`${item?.image}`} alt="" className="w-[290px] h-[180px]" />
-                         <div className="flex flex-col">
+                         <div className="flex flex-col text-[#222]">
                             <p className="font-semibold text-center">{item?.header}</p>
                             <p className="text-[12px] text-center">{item?.description}</p>
                         </div>

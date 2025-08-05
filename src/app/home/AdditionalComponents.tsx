@@ -30,9 +30,9 @@ function AdditionalComponents() {
             {componentData_1.map((item: any, index: any) => (
                 <div key={index} className={`flex items-center gap-3 border border-[#999999] shadow-lg  rounded-[20px] p-3 transform transition-transform duration-300 ease-in-out ${isHover === index ? "scale-105" : "scale-100"} `}  onMouseEnter={()=>setIsHover(index)} onMouseLeave={()=>setIsHover(null)}>
                     <img src={`${item?.image}`} alt="" className="w-[290px] h-[170px]" />
-                   <div className="flex flex-col gap-2">
+                   <div className="flex flex-col gap-2 text-[#222]">
                      <p className="font-semibold">{item?.header}</p>
-                    <div className="text-[12px]">
+                    <div className="text-[12px] text-[#222]">
                         <p>{item?.description}</p>
                     </div>
                    </div>
