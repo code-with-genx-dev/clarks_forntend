@@ -27,12 +27,12 @@ export const storeUserDataInCookies = (data: any) => {
     path: '/',
   });
 
-  setCookie(null, 'is_admin', data.user.is_admin, {
+  setCookie(null, 'is_admin', (data.user.is_admin), {
     maxAge: 1 * 24 * 60 * 60,
     path: '/',
   });
 
-  setCookie(null, 'user_id', String(data.user.id), {
+  setCookie(null, 'user_id', String(data.user.user_id), {
     maxAge: 1 * 24 * 60 * 60,
     path: '/',
   });
@@ -50,6 +50,7 @@ export const getUserDataFromCookies = () => {
     user_name: cookies.user_name || 'Guest',
     user_email: cookies.user_email || null,
     user_id: cookies.user_id ? parseInt(cookies.user_id) : null,
+    is_admin: cookies.is_admin || null
   };
 };
 
@@ -61,4 +62,5 @@ export const clearUserDataFromCookies = () => {
     destroyCookie(null, 'user_name');
     destroyCookie(null, 'user_email');
     destroyCookie(null, 'user_id');
+    destroyCookie(null, 'is_admin');
   };

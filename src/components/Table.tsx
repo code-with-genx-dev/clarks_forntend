@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
 interface TableColumn {
   label: string;
   key: string;
   align?: "left" | "center" | "right";
   width?: string;
+  render?: (row: TableRow) => React.ReactNode; // custom cell template
 }
 
 interface TableRow {
@@ -18,6 +19,7 @@ interface TableProps {
   onRemoveRow?: (id: string | number) => void;
   onEditRow?: (id: string | number) => void;
   onRowClick?: (id: string | number) => void;
+  rowsPerPage?: number;
 }
 
 const Table: React.FC<TableProps> = ({
@@ -26,12 +28,36 @@ const Table: React.FC<TableProps> = ({
   onRemoveRow,
   onEditRow,
   onRowClick,
+  rowsPerPage = 5
 }) => {
+  const [selectedRows, setSelectedRows] = useState<(string | number)[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const isEmpty = !rows || rows.length === 0;
+
+  const startIndex = (currentPage - 1) * rowsPerPage;
+  const endIndex = startIndex + rowsPerPage;
+  const paginatedRows = rows.slice(startIndex, endIndex);
+
+  const totalPages = Math.ceil(rows.length / rowsPerPage);
+
+  const toggleSelectAll = () => {
+    if (selectedRows.length === paginatedRows.length) {
+      setSelectedRows([]);
+    } else {
+      setSelectedRows(paginatedRows.map((row) => row.id));
+    }
+  };
+
+  const toggleSelectRow = (id: string | number) => {
+    setSelectedRows((prev) =>
+      prev.includes(id) ? prev.filter((sid) => sid !== id) : [...prev, id]
+    );
+  };
+
   const handleRowClick = (id: string | number) => {
     onRowClick?.(id);
   };
-
-  const isEmpty = !rows || rows.length === 0;
 
   return (
     <div className="overflow-x-auto w-full !text-[14px] scroll-bar rounded">
@@ -39,6 +65,14 @@ const Table: React.FC<TableProps> = ({
         {/* Table Header */}
         <thead>
           <tr className="bg-[#E6E6E6]">
+            {/* Select All */}
+            <th className="px-2 py-1 text-center w-[40px]">
+              <input
+                type="checkbox"
+                checked={selectedRows.length === paginatedRows.length && paginatedRows.length > 0}
+                onChange={toggleSelectAll}
+              />
+            </th>
             {columns.map((column) => (
               <th
                 key={column.key}
@@ -59,7 +93,7 @@ const Table: React.FC<TableProps> = ({
           {isEmpty ? (
             <tr>
               <td
-                colSpan={columns.length + (onRemoveRow || onEditRow ? 1 : 0)}
+                colSpan={columns.length + (onRemoveRow || onEditRow ? 2 : 1)}
                 className="text-center py-10"
               >
                 <img
@@ -71,19 +105,27 @@ const Table: React.FC<TableProps> = ({
               </td>
             </tr>
           ) : (
-            rows.map((row, index) => (
+            paginatedRows.map((row, index) => (
               <tr
                 key={row.id || index}
-                className="border-b hover:bg-gray-50 cursor-pointer"
+                className="border-b hover:bg-gray-50 border-[#DDDDDD] cursor-pointer"
                 onClick={() => handleRowClick(row.id)}
               >
+                {/* Single Select */}
+                <td className="px-2 py-3 text-center" onClick={(e) => e.stopPropagation()}>
+                  <input
+                    type="checkbox"
+                    checked={selectedRows.includes(row.id)}
+                    onChange={() => toggleSelectRow(row.id)}
+                  />
+                </td>
                 {columns.map((column) => (
                   <td
                     key={column.key}
-                    className={`border px-2 py-1 text-${column.align || "left"} whitespace-nowrap`}
+                    className={`px-2 py-3 text-${column.align || "left"} whitespace-nowrap`}
                     style={{ width: column.width || "auto" }}
                   >
-                    {row[column.key]}
+                    {column.render ? column.render(row) : row[column.key]}
                   </td>
                 ))}
                 {(onRemoveRow || onEditRow) && (
@@ -119,6 +161,31 @@ const Table: React.FC<TableProps> = ({
           )}
         </tbody>
       </table>
+
+      {/* Pagination */}
+      {!isEmpty && (
+        <div className="flex justify-between items-center mt-3 text-sm">
+          <span>
+            Page {currentPage} of {totalPages}
+          </span>
+          <div className="flex gap-2">
+            <button
+              className="px-3 py-1 border rounded disabled:opacity-50"
+              onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+              disabled={currentPage === 1}
+            >
+              Prev
+            </button>
+            <button
+              className="px-3 py-1 border rounded disabled:opacity-50"
+              onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+              disabled={currentPage === totalPages}
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

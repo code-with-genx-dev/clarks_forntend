@@ -40,3 +40,40 @@ export function getRandomTailwindBgColor(): string {
     const index = Math.floor(Math.random() * tailwindDimColors.length);
     return tailwindDimColors[index];
 }
+
+export function extractFileFromBase64(base64String: string) {
+        // 1️⃣ Split header and data
+        const [meta, base64Data] = base64String?.split(',');
+
+        // 2️⃣ Extract mime type (eg: image/png or application/pdf)
+        const mimeMatch = meta?.match(/data:(.*);base64/);
+        const mimeType = mimeMatch ? mimeMatch[1] : '';
+
+        // 3️⃣ Get file extension
+        let extension = '';
+        if (mimeType) {
+            const extMap: Record<string, string> = {
+                'image/jpeg': 'jpg',
+                'image/png': 'png',
+                'application/pdf': 'pdf',
+            };
+            extension = extMap[mimeType] || mimeType.split('/')[1];
+        }
+
+        // 4️⃣ Create a filename
+        const fileName = `file_${Date.now()}.${extension}`;
+
+        // 5️⃣ Convert base64 to Blob
+        const byteCharacters = atob(base64Data);
+        const byteNumbers = new Array(byteCharacters.length);
+        for (let i = 0; i < byteCharacters.length; i++) {
+            byteNumbers[i] = byteCharacters.charCodeAt(i);
+        }
+        const byteArray = new Uint8Array(byteNumbers);
+        const blob = new Blob([byteArray], { type: mimeType });
+
+        // 6️⃣ Create preview link
+        const fileUrl = URL.createObjectURL(blob);
+
+        return { fileName, mimeType, fileUrl, blob };
+    }

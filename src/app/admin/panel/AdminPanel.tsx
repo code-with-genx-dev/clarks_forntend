@@ -28,8 +28,21 @@ const AdminPanel = () => {
         { label: "Upload Category", key: "upload_category", align: "left", width: "" },
         { label: "Upload Sub Category", key: "upload_sub_category", align: "center", width: "" },
         { label: "File Name", key: "upload_file_name", align: "center", width: "" },
-        { label: "Upload Status", key: "upload_status", align: "center", width: "" },
-        { label: "Action", key: "edit", align: "center", width: "" }
+        { label: "Upload Status", key: "upload_status", align: "center", width: "", render: (row:any) => (
+        <div className={`${row.upload_status == "Pending" ? "text-[#83803F] bg-[#F3F0D6]" : row.upload_status == "Approved" ? "text-[#60833F] bg-[#E4F3D6]" : "text-[#833F3F] bg-[#F3D6D6]"} text-center px-2 py-1 rounded-md flex justify-center items-center`}>
+        {row.upload_status}
+        </div>
+      )},
+        { label: "Action", key: "edit", align: "center",  render: (row:any) => (
+        <div className="flex gap-2 justify-center">
+          <button className="text-blue-500 hover:text-blue-700" onClick={(e) => { e.stopPropagation(); console.log("Edit", row.id); }}>
+            <i className="pi pi-pencil"></i>
+          </button>
+          <button className="text-red-500 hover:text-red-700" onClick={(e) => { e.stopPropagation(); console.log("Delete", row.id); }}>
+            <i className="pi pi-trash"></i>
+          </button>
+        </div>
+      )}
     ];
     const Card = ({ index, data }: any) => {
         return (
